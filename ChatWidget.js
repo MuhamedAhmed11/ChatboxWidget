@@ -27,7 +27,13 @@ class ChatWidget {
   sendMessage(msg, chatbox_support) {
     fetch('http://127.0.0.1:8080/website', {
       method: 'POST',
-      body: JSON.stringify({ message: msg, sid: this.sid }),
+      body: JSON.stringify({
+        message: msg,
+        sid: this.sid,
+        userId: this.userId,
+        email: this.email,
+        username: this.username,
+      }),
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',

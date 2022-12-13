@@ -18,7 +18,9 @@ class ChatWidget {
     this.userId = localStorage.getItem('userId')
       ? JSON.parse(localStorage.getItem('userId'))
       : '';
-    this.messages = [];
+    this.messages = localStorage.getItem('messages')
+      ? JSON.parse(localStorage.getItem('messages'))
+      : [];
     this.cs = undefined;
     this.sid = document.currentScript.getAttribute('sid');
     this.delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -56,6 +58,11 @@ class ChatWidget {
           type: resp.type,
         });
         this.updateMessages(chatbox_support);
+
+        localStorage.setItem(
+          'messages',
+          JSON.stringify(this.messages)
+        );
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -149,6 +156,7 @@ class ChatWidget {
           this.email === undefined
         )
           return;
+
         if (this.userId === '') {
           fetch('http://127.0.0.1:8080/generateId', {
             method: 'POST',
@@ -160,6 +168,7 @@ class ChatWidget {
           })
             .then(async (resp) => {
               let respond = await resp.json();
+              this.userId = respond.id;
               localStorage.setItem(
                 'userId',
                 JSON.stringify(respond.id)

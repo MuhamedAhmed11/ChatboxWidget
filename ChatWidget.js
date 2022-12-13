@@ -1,7 +1,7 @@
 var cssFile = document.createElement('link');
 cssFile.rel = 'stylesheet';
 cssFile.href =
-  'https://cdn.statically.io/gh/MuhamedAhmed11/ButtonJs/c32e35a3fba8ae7f3fbde2d9f5674fac59c3909b/ChatWidget.css';
+  'https://cdn.statically.io/gh/MuhamedAhmed11/ButtonJs/e334dc8d3716a39430dc41c0d2d245b98f349ad0/ChatWidget.css';
 // cssFile.href = 'ChatWidget.css';
 document.head.appendChild(cssFile);
 
@@ -27,7 +27,7 @@ class ChatWidget {
   }
 
   sendMessage(msg, chatbox_support) {
-    fetch('http://127.0.0.1:8080/website', {
+    fetch('https://chatbotserver-gxkpqz66ta-oc.a.run.app/website', {
       method: 'POST',
       body: JSON.stringify({
         message: msg,
@@ -158,14 +158,17 @@ class ChatWidget {
           return;
 
         if (this.userId === '') {
-          fetch('http://127.0.0.1:8080/generateId', {
-            method: 'POST',
-            body: JSON.stringify({ test: 'test' }),
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
+          fetch(
+            'https://chatbotserver-gxkpqz66ta-oc.a.run.app/generateId',
+            {
+              method: 'POST',
+              body: JSON.stringify({ test: 'test' }),
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          )
             .then(async (resp) => {
               let respond = await resp.json();
               this.userId = respond.id;

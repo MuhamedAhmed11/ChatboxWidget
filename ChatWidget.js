@@ -1,7 +1,7 @@
 var cssFile = document.createElement('link');
 cssFile.rel = 'stylesheet';
 cssFile.href =
-  'https://cdn.statically.io/gh/MuhamedAhmed11/ButtonJs/e334dc8d3716a39430dc41c0d2d245b98f349ad0/ChatWidget.css';
+  'https://cdn.statically.io/gh/MuhamedAhmed11/ButtonJs/bc567634a245991eea3b0cd4f437a3a3b2fe2642/ChatWidget.css';
 // cssFile.href = 'ChatWidget.css';
 document.head.appendChild(cssFile);
 
